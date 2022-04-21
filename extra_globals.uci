@@ -1,0 +1,17 @@
+`define AMLOG(msg) `LOG(GetFuncName() @ `msg, /* class'$ModSafeName$_Defaults'.default.VERSION_CFG > class'$ModSafeName$_MCMScreen'.default.VERSION_CFG ? class'$ModSafeName$_Defaults'.default.DEBUG_LOGGING : class'$ModSafeName$_MCMScreen'.default.DEBUG_LOGGING */, '$ModSafeName$')
+
+`define CAPS(VarName) class'UIUtilities_Text'.static.CapsCheckForGermanScharfesS(`VarName)
+
+`define GetLocalizedString(VarName) class'Help'.static.GetLocalizedString(`VarName)
+
+`define GetConfig(VarName) class'ConfigEngine'.static.GetConfig(`VarName)
+
+`define GetConfigValue(VarName) class'ConfigEngine'.static.GetConfigValue(`VarName)
+`define GetConfigBool(VarName) class'ConfigEngine'.static.GetConfigBool(`VarName)
+`define GetConfigInt(VarName) class'ConfigEngine'.static.GetConfigInt(`VarName)
+`define GetConfigFloat(VarName) class'ConfigEngine'.static.GetConfigFloat(`VarName)
+`define GetConfigName(VarName) class'ConfigEngine'.static.GetConfigName(`VarName)
+`define GetConfigString(VarName) class'ConfigEngine'.static.GetConfigString(`VarName)
+`define GetConfigArrayInt(VarName) class'ConfigEngine'.static.GetConfigArrayInt(`VarName)
+`define GetConfigArrayFloat(VarName) class'ConfigEngine'.static.GetConfigArrayFloat(`VarName)
+

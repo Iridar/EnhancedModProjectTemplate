@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Default" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<PropertyGroup>
+		<Guid>$guid1$</Guid>
+    <Name>$Name$</Name>
+    <Description>$Description$</Description>
+    <SteamPublishID>0</SteamPublishID>
+	</PropertyGroup>
+  <ItemGroup>
+	<Folder Include=".scripts\" />
+	<Folder Include=".scripts\X2ModBuildCommon\" />
+    <Folder Include="Config\" />
+	<Folder Include="Config\Base\" />
+    <Folder Include="Localization\" />
+    <Folder Include="Src\" />
+	<Folder Include="Content\" />
+    <Folder Include="ContentForCook\" />
+    <Folder Include="Src\$ModSafeName$\"/>
+    <Folder Include="Src\$ModSafeName$\Classes\"/>
+  </ItemGroup>
+  <ItemGroup>
+	<Content Include=".scripts\build.ps1" />
+	<Content Include=".scripts\X2ModBuildCommon\build_common.ps1" />
+	<Content Include=".scripts\X2ModBuildCommon\CHANGELOG.md" />
+	<Content Include=".scripts\X2ModBuildCommon\clean.ps1" />
+	<Content Include=".scripts\X2ModBuildCommon\clean_cooker_output.ps1" />
+	<Content Include=".scripts\X2ModBuildCommon\EmptyUMap" />
+	<Content Include=".scripts\X2ModBuildCommon\InvokePowershellTask.cs" />
+	<Content Include=".scripts\X2ModBuildCommon\LICENSE" />
+	<Content Include=".scripts\X2ModBuildCommon\README.md" />
+	<Content Include=".scripts\X2ModBuildCommon\XCOM2.targets" />
+	<Content Include=".gitignore" />
+	<Content Include="replace_text.exe" />
+	<Content Include="RUN_THIS.bat" />
+	<Content Include="ReadMe.txt" />
+    <Content Include="ModPreview.jpg"/>
+	<Content Include="ContentOptions.json"/>
+    <Content Include="Config\Base\XComEditor.ini"/>
+    <Content Include="Config\Base\XComEngine.ini"/>
+    <Content Include="Config\Base\XComGame.ini"/>
+	<Content Include="Config\XComTemplateCreator.ini"/>
+	<Content Include="Config\XComTemplateEditor.ini"/>
+    <Content Include="Localization\XComGame.int"/>
+	<Content Include="Localization\$ModSafeName$.int"/>
+	<Content Include="Src\extra_globals.uci" />
+    <Content Include="Src\$ModSafeName$\Classes\X2DLCInfo_$ModSafeName$.uc" />
+	<Content Include="Src\$ModSafeName$\Classes\Help.uc" />
+	<Content Include="Src\$ModSafeName$\Classes\ConfigEngine.uc" />
+  </ItemGroup>  
+    <PropertyGroup>
+    <SolutionRoot>$(MSBuildProjectDirectory)\</SolutionRoot>
+    <ScriptsDir>$(SolutionRoot).scripts\</ScriptsDir>
+    <BuildCommonRoot>$(ScriptsDir)X2ModBuildCommon\</BuildCommonRoot>
+  </PropertyGroup>
+  <Import Project="$(BuildCommonRoot)XCOM2.targets" />
+</Project>

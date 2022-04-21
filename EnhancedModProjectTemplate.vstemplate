@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VSTemplate Version="3.0.0" Type="Project" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
+  <TemplateData>
+    <Name>Enhanced Mod</Name>
+    <Description>Enhanced Mod project with Config Engine included, and set up for X2ModBuildCommon v1.2.1 and Template Master.</Description>
+    <Icon>ProjectIcon.ico</Icon>
+    <ProjectType>XCOM2Mod</ProjectType>
+    <SortOrder>1000</SortOrder>
+    <TemplateID>7e33593d-b5d7-40ef-96c6-cbd8c3f466e1</TemplateID>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>MyXCOM2Mod</DefaultName>
+    <ProvideDefaultName>false</ProvideDefaultName>
+  </TemplateData>
+  <TemplateContent>
+    <Project File="ProjectTemplate.x2proj" ReplaceParameters="true">
+	
+		<ProjectItem ReplaceParameters="true">.scripts\build.ps1</ProjectItem>
+		<ProjectItem>.scripts\X2ModBuildCommon\build_common.ps1</ProjectItem>
+		<ProjectItem>.scripts\X2ModBuildCommon\CHANGELOG.md</ProjectItem>
+		<ProjectItem>.scripts\X2ModBuildCommon\clean.ps1</ProjectItem>
+		<ProjectItem>.scripts\X2ModBuildCommon\clean_cooker_output.ps1</ProjectItem>
+		<ProjectItem>.scripts\X2ModBuildCommon\EmptyUMap</ProjectItem>
+		<ProjectItem>.scripts\X2ModBuildCommon\InvokePowershellTask.cs</ProjectItem>
+		<ProjectItem>.scripts\X2ModBuildCommon\LICENSE</ProjectItem>
+		<ProjectItem>.scripts\X2ModBuildCommon\README.md</ProjectItem>
+		<ProjectItem>.scripts\X2ModBuildCommon\XCOM2.targets</ProjectItem>
+		
+		<ProjectItem>.gitignore</ProjectItem>
+		<ProjectItem ReplaceParameters="true">RUN_THIS.bat</ProjectItem>
+		<ProjectItem>replace_text.exe</ProjectItem>
+		
+		<ProjectItem ReplaceParameters="true">Config\Base\XComEditor.ini</ProjectItem>
+		<ProjectItem ReplaceParameters="true">Config\Base\XComEngine.ini</ProjectItem>
+		<ProjectItem ReplaceParameters="true">Config\Base\XComGame.ini</ProjectItem>
+		
+		<ProjectItem>Config\XComTemplateCreator.ini</ProjectItem>
+		<ProjectItem>Config\XComTemplateEditor.ini</ProjectItem>
+
+		<ProjectItem>Localization\XComGame.int</ProjectItem>
+		<ProjectItem ReplaceParameters="true" TargetFileName="Localization\$ModSafeName$.int">Mod.int</ProjectItem>
+		
+		<ProjectItem ReplaceParameters="true" TargetFileName="Src\$ModSafeName$\Classes\X2DLCInfo_$ModSafeName$.uc">X2DLCInfo_Mod.uc</ProjectItem>
+		<ProjectItem ReplaceParameters="true" TargetFileName="Src\$ModSafeName$\Classes\Help.uc">Help.uc</ProjectItem>
+		<ProjectItem ReplaceParameters="true" TargetFileName="Src\$ModSafeName$\Classes\ConfigEngine.uc">ConfigEngine.uc</ProjectItem>
+		<ProjectItem ReplaceParameters="true" TargetFileName="Src\extra_globals.uci">extra_globals.uci</ProjectItem>
+		<ProjectItem ReplaceParameters="true" OpenInEditor="true">ReadMe.txt</ProjectItem>      
+		<ProjectItem>ContentOptions.json</ProjectItem>
+		<ProjectItem>ModPreview.jpg</ProjectItem>
+    </Project>
+  </TemplateContent>
+  <WizardExtension>
+    <Assembly>XCOM2.Wizards</Assembly>
+    <FullClassName>Firaxis.VisualStudio.Wizards.XCOM2.DefaultModWizard</FullClassName>
+  </WizardExtension>
+</VSTemplate>
