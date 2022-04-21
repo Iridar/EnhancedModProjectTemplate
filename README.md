@@ -70,3 +70,6 @@ To build your mod against Highlander, run this command in Git terminal:
 
 Then open `.scripts\build.ps1` and uncomment the `$builder.IncludeSrc("$srcDirectory\X2WOTCCommunityHighlander\X2WOTCCommunityHighlander\Src")` line by removing the `#` at the start.
 
+# Credits
+
+[Find And Replace Text](http://fart-it.sourceforge.net/) command line tool (replace_text.exe) by by Lionello Lunesu
