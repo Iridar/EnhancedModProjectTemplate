@@ -48,8 +48,16 @@ REM Bandaid fix for path to XCOM2.targets file we ruined by one of the commands 
 replace_text.exe $ModSafeName$.x2proj "$(SolutionRoot)" $(SolutionRoot).scripts\\
 
 echo X2ModBuildCommon v1.2.1 successfully installed. > ReadMe.txt
-echo Edit build.ps1 if you want to enable cooking. >> ReadMe.txt
+echo.
+echo Edit .scripts\build.ps1 if you want to enable cooking. >> ReadMe.txt
+echo. >> ReadMe.txt
 echo Enjoy making your mod, and may the odds be ever in your favor. >> ReadMe.txt
+echo. >> ReadMe.txt
+echo. >> ReadMe.txt
+echo Created with Enhanced Mod Project Template v1.0 >> ReadMe.txt
+echo. >> ReadMe.txt
+echo Get news and updates here: >> ReadMe.txt
+echo https://github.com/Iridar/EnhancedModProjectTemplate >> ReadMe.txt
 
 REM Delete text editor.
 del replace_text.exe
