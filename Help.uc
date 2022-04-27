@@ -129,6 +129,8 @@ WOTC_LW2SecondaryWeapons
 
 */
 
+var private localized string strDummy; // Required for Localize() function below to work.
+
 static final function XComGameState_HeadquartersXCom GetAndPrepXComHQ(XComGameState NewGameState)
 {
     local XComGameState_HeadquartersXCom XComHQ;

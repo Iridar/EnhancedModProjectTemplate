@@ -13,8 +13,16 @@ IMPORTANT!!!
 When you create the mod project, project Name, Solution name and Title must match *exactly*. Otherwise the first time setup will fail.
 
 
-Enhanced Mod Project Template v1.0
+Enhanced Mod Project Template v1.1
 
 Get news and updates here:
 
 https://github.com/Iridar/EnhancedModProjectTemplate
+
+v1.1
+
+Fixed the GetLocalizedString() function not working.
+
+v1.0
+
+Initial release.
