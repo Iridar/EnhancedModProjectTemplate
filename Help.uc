@@ -129,8 +129,6 @@ WOTC_LW2SecondaryWeapons
 
 */
 
-var private localized string strDummy; // Required for Localize() function below to work.
-
 static final function XComGameState_HeadquartersXCom GetAndPrepXComHQ(XComGameState NewGameState)
 {
     local XComGameState_HeadquartersXCom XComHQ;
@@ -410,5 +408,64 @@ YourString = `GetLocalizedString('StringName');
 */
 static final function string GetLocalizedString(const coerce string StringName)
 {
-	return Localize("Help", "StringName", "$ModSafeName$");
+	return Localize("Help", StringName, "$ModSafeName$");
+}
+
+// Create a single big string out of an array of smaller strings, separated by an optional delimiter.
+static final function string JoinStrings(array<string> Arr, optional string Delim = "")
+{
+	local string ReturnString;
+	local int i;
+
+	// Handle it this way so there's no delim after the final member.
+	for (i = 0; i < Arr.Length - 1; i++)
+	{
+		ReturnString $= Arr[i] $ Delim;
+	}
+	if (Arr.Length > 0)
+	{
+		ReturnString $= Arr[Arr.Length - 1];
+	}
+	return ReturnString;
+}
+
+static final function array<XComGameState_Unit> GetSquadUnitStates()
+{
+	local XComGameState_HeadquartersXCom	XComHQ;
+	local StateObjectReference				SquadUnitRef;
+	local array<XComGameState_Unit>			UnitStates;
+	local XComGameState_Unit				UnitState;
+	local XComGameStateHistory				History;
+
+	XComHQ = `XCOMHQ;
+	History = `XCOMHISTORY;
+	foreach XComHQ.Squad(SquadUnitRef)
+	{
+		UnitState = XComGameState_Unit(History.GetGameStateForObjectID(SquadUnitRef.ObjectID));
+		if (UnitState != none)
+		{
+			UnitStates.AddItem(UnitState);
+		}
+	}
+	return UnitStates;
+}
+
+static final function bool AreItemTemplatesMutuallyExclusive(const X2ItemTemplate TemplateA, const X2ItemTemplate TemplateB)
+{
+	return TemplateA.ItemCat == TemplateB.ItemCat || 
+			X2WeaponTemplate(TemplateA) != none && X2WeaponTemplate(TemplateB) != none && 
+			X2WeaponTemplate(TemplateA).WeaponCat == X2WeaponTemplate(TemplateB).WeaponCat;
+}
+
+
+static final function bool IsItemUniqueEquipInSlot(X2ItemTemplateManager ItemMgr, const X2ItemTemplate ItemTemplate, const EInventorySlot Slot)
+{
+	local X2WeaponTemplate WeaponTemplate;
+
+	if (class'X2TacticalGameRulesetDataStructures'.static.InventorySlotBypassesUniqueRule(Slot))
+		return false;
+
+	WeaponTemplate = X2WeaponTemplate(ItemTemplate);
+
+	return ItemMgr.ItemCategoryIsUniqueEquip(ItemTemplate.ItemCat) || WeaponTemplate != none && ItemMgr.ItemCategoryIsUniqueEquip(WeaponTemplate.WeaponCat);
 }
