@@ -10,3 +10,7 @@ FriendlyName="Battle Scanner"
 FriendlyNamePlural="Battle Scanners"
 BriefSummary="The Battle Scanner provides extra vision on the battlefield. Soldiers deploy it like a grenade, throwing it to a hidden area of the map that they want to reveal. Any hidden or disguised enemies will be revealed as well."
 TacticalText="<Bullet/> Battle Scanners reveal an area hidden by the \"fog of war\" for multiple turns.\n<Bullet/> Battle Scanners also reveal hidden or disguised enemies."
+AbilityDescName="shotgun"
+
+[ClausMecShotgun_CV_Schematic X2SchematicTemplate]
+m_strClassLabel="RANGER"
