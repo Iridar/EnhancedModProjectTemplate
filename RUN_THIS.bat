@@ -49,12 +49,12 @@ replace_text.exe $ModSafeName$.x2proj "$(SolutionRoot)" $(SolutionRoot).scripts\
 
 echo X2ModBuildCommon v1.2.1 successfully installed. > ReadMe.txt
 echo.
-echo Edit .scripts\build.ps1 if you want to enable cooking. >> ReadMe.txt
+echo Edit .scripts\build.ps1 if you want to enable cooking or build against Highlander. >> ReadMe.txt
 echo. >> ReadMe.txt
 echo Enjoy making your mod, and may the odds be ever in your favor. >> ReadMe.txt
 echo. >> ReadMe.txt
 echo. >> ReadMe.txt
-echo Created with Enhanced Mod Project Template v1.0 >> ReadMe.txt
+echo Created with Enhanced Mod Project Template v1.4 >> ReadMe.txt
 echo. >> ReadMe.txt
 echo Get news and updates here: >> ReadMe.txt
 echo https://github.com/Iridar/EnhancedModProjectTemplate >> ReadMe.txt

@@ -1,3 +1,5 @@
+![EMPT-Logo](https://github.com/Iridar/EnhancedModProjectTemplate/blob/master/ModPreview.jpg)
+
 # Enhanced Mod  Project Template
 
 Enhanced Mod  Project Template (EMPT) is an XCOM 2 War of the Chosen mod project template. It can be used to create new mods quickly, without spending time and effort on menial tasks, like setting up [X2ModBuildCommon](https://github.com/X2CommunityCore/X2ModBuildCommon) manually.

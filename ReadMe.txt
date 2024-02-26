@@ -13,11 +13,21 @@ IMPORTANT!!!
 When you create the mod project, project Name, Solution name and Title must match *exactly*. Otherwise the first time setup will fail.
 
 
-Enhanced Mod Project Template v1.3
+Enhanced Mod Project Template v1.4
 
 Get news and updates here:
 
 https://github.com/Iridar/EnhancedModProjectTemplate
+
+v1.4
+
+Filled X2DLCInfo and XComGame.int with examples. 
+Added an alternative example for using X2MBC to build against Highlander to build.ps1.
+New mod preview image.
+Added more global macros to globals_uci.
+Expanded and updated ConfigEngine with more functions and improved performance.
+Improved Help.uc formatting.
+Added useful stuff into .gitignore
 
 v1.3
 

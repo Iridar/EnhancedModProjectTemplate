@@ -1,16 +1,53 @@
-[HoloTargeting X2AbilityTemplate]
-LocFriendlyName="Holo Targeting"
-LocLongDescription="Any directed <Ability:WeaponName/> shot, hit or miss, will mark the target, increasing your squad's aim by +<Ability:HOLOTARGETAIMBONUS/> against this target."
-LocHelpText="Shooting at a target grants bonus Aim to allies against that target"
-LocPromotionPopupText="<Bullet/> Directed <Ability:WeaponName/>-specific abilities will grant Holo Targeting.<br/><Bullet/> Any <Ability:ClassName/> abilities that target multiple units will not grant Holo Targeting.<br/>"
-LocFlyOverText="Holo Targeting"
+; Example ability template localization.
+;
+; [HoloTargeting X2AbilityTemplate]
+; LocFriendlyName="Holo Targeting"
+; LocLongDescription="Any directed <Ability:WeaponName/> shot, hit or miss, will mark the target, increasing your squad's aim by +<Ability:HOLOTARGETAIMBONUS/> against this target."
+; LocHelpText="Shooting at a target grants bonus Aim to allies against that target"
+; LocPromotionPopupText="<Bullet/> Directed <Ability:WeaponName/>-specific abilities will grant Holo Targeting.<br/><Bullet/> Any <Ability:ClassName/> abilities that target multiple units will not grant Holo Targeting.<br/>"
+; LocFlyOverText="Holo Targeting"
+ 
+; Example weapon template localization.
+;
+; [BattleScanner X2WeaponTemplate]
+; FriendlyName="Battle Scanner"
+; FriendlyNamePlural="Battle Scanners"
+; BriefSummary="The Battle Scanner provides extra vision on the battlefield. Soldiers deploy it like a grenade, throwing it to a hidden area of the map that they want to reveal. Any hidden or disguised enemies will be revealed as well."
+; TacticalText="<Bullet/> Battle Scanners reveal an area hidden by the \"fog of war\" for multiple turns.\n<Bullet/> Battle Scanners also reveal hidden or disguised enemies."
+; AbilityDescName="shotgun"
 
-[BattleScanner X2WeaponTemplate]
-FriendlyName="Battle Scanner"
-FriendlyNamePlural="Battle Scanners"
-BriefSummary="The Battle Scanner provides extra vision on the battlefield. Soldiers deploy it like a grenade, throwing it to a hidden area of the map that they want to reveal. Any hidden or disguised enemies will be revealed as well."
-TacticalText="<Bullet/> Battle Scanners reveal an area hidden by the \"fog of war\" for multiple turns.\n<Bullet/> Battle Scanners also reveal hidden or disguised enemies."
-AbilityDescName="shotgun"
+; Example schematic template localization.
+;
+; [ClausMecShotgun_CV_Schematic X2SchematicTemplate]
+; m_strClassLabel="RANGER"
 
-[ClausMecShotgun_CV_Schematic X2SchematicTemplate]
-m_strClassLabel="RANGER"
+; Example item template localization.
+;
+; [IRI_AuroraShard X2ItemTemplate]
+; FriendlyName = "Aurora Shard"
+; FriendlyNamePlural = "Aurora Shards"
+; BriefSummary = "Can be used in the Psi Lab to infuse a soldier without The Gift with psionic abilities."
+
+; Example ammo template localization.
+;
+; [IRI_Ammo_Sabot X2AmmoTemplate]
+; FriendlyName="Sabot Rounds"
+; FriendlyNamePlural="Sabot Rounds"
+; BriefSummary="These arrow-shaped sub-caliber rounds use discarding sabot to accelerate to hypersonic speeds, making them vastly more effective at long range, and harder for enemies to avoid."
+; TacticalText="These arrow-shaped sub-caliber rounds use discarding sabot to accelerate to hypersonic speeds, making them vastly more effective at long range, and harder for enemies to avoid.<br/><bullet> Squadsight penalties to Aim and Crit are reduced by <Ability:IRI_SABOT_AMMO_COUNTER_SQUADSIGHT/>.<br/><bullet> <Ability:IRI_SABOT_AMMO_COUNTER_DODGE/> of the target's natural Dodge is ignored.<br><Bullet/> <Ability:IRI_SABOT_AMMO_COUNTER_DEFENSE/> of the target's natural Defense is ignored. <br><Bullet/> Squadsight normally applies <Ability:IRI_SABOT_AMMO_SQUADSIGHT_AIM/> Aim penalty per tile and <Ability:IRI_SABOT_AMMO_SQUADSIGHT_CRIT/> Crit penalty."
+
+; Example tech template localization.
+;
+; [IRI_ImprovedShells_Tech X2TechTemplate]
+; DisplayName="Improved Heavy Cannon Shells"
+; Summary="Upgrade and revise our entire arsenal of special Heavy Cannon shells to improve them wherever possible."
+
+; Example weapon upgrade template localization.
+; 
+; [IRI_ExperimentalMagazine_Upgrade X2WeaponUpgradeTemplate]
+; FriendlyName="Experimental Magazine"
+; FriendlyNamePlural="Experimental Magazines"
+; BriefSummary="Grants an Ammo Slot."
+; TinySummary="Grants an Ammo Slot."
+; LootTooltip="This weapon upgrade will allow equipping special ammo without occupying a utility slot. It will have no effect if the unit already has an Ammo Slot."
+

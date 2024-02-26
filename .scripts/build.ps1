@@ -12,11 +12,19 @@ Write-Host "Sourcing $common"
 
 $builder = [BuildProject]::new("$ModSafeName$", $srcDirectory, $sdkPath, $gamePath)
 
-# Use GIT to add Highlander submodule.
+# Building against Highlander option 1:
+# Use Git to add Highlander submodule by running this command in the terminal:
 # git submodule add https://github.com/X2CommunityCore/X2WOTCCommunityHighlander.git
-
 # Uncomment the next line to enable building against Highlander.
 # $builder.IncludeSrc("$srcDirectory\X2WOTCCommunityHighlander\X2WOTCCommunityHighlander\Src")
+
+# Building against Highlander option 2:
+# Specify path to your local Highlander repository or the Highlander's mod folder,
+# and uncomment the line:
+# $builder.IncludeSrc("C:\Users\Iridar\Documents\Firaxis ModBuddy\X2WOTCCommunityHighlander\X2WOTCCommunityHighlander\Src")
+
+# Uncomment to use additional global Custom Src to build against.
+# $builder.IncludeSrc("C:\Users\Iridar\Documents\Firaxis ModBuddy\CustomSrc")
 
 switch ($config)
 {

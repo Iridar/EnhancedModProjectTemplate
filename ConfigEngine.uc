@@ -1,37 +1,42 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    ConfigEngine.uc
-//  AUTHOR:  Iridar  --  20/04/2022
+//  AUTHOR:  Iridar / Enhanced Mod Project Template --  26/02/2024
 //  PURPOSE: Helper class for setting up configurable values.       
 //---------------------------------------------------------------------------------------
 
 class ConfigEngine extends Object config(Game) abstract;
 
+//=======================================================================================
+//                                     OVERVIEW
+//---------------------------------------------------------------------------------------
+// 
+// Config Engine aims to resolve two issues:
+// 
+// 1. Setting up configuration variables is a chore.
+// 
+// This problem is resolved by removing the need to declare configuration variables. 
+// You simply specify the name of the property, and use that property in config files. 
+// Config Engine connects the two automatically.
+// 
+// 2. Other mods have trouble reliably overriding shipped default config.
+// 
+// This happens because config load order is unpredictable from the modmaker's end.
+// In other words, while there are ways to enforce particular config load order, 
+// they must be implemented on the end of the mod user, 
+// and cannot be enforced by you, the modmaker.
+// 
+// This problem is resolved by adding a Priority value to each configuration entry, which
+// has the final word on which config entry gets used, irrespective of config load order
+// (unless several entries have the same Priority, in which case the latest entry in 
+// config load order will be used).
+// 
+//=======================================================================================
+//                              SETTING CONFIG ENTRIES
+//---------------------------------------------------------------------------------------
+//
+//Some examples of specifying config values. Default config file is XComGame.ini, 
+//but you can change it to whatever you want in the class definition above.
 /*
-
-//  OVERVIEW
-
-Config Engine aims to resolve two issues:
-
-1. Setting up configuration variables is a chore.
-
-This problem is resolved by removing the need to declare configuration variables. You 
-simply specify the name of the property, and use that property in config files. Config
-Engine connects the two automatically.
-
-2. When a mod ships with default config, other mods will have trouble reliably changing 
-that default config due to config load order being unpredictable from the modmaker's end.
-In other words, while there are ways to enforce particular config load order, they must 
-be done on the end of the mod user, and cannot be enforced by you, the modmaker.
-
-This problem is resolved by adding a Priority value to each configuration entry, which
-has the final word on which config entry gets used, irrespective of config load order
-(unless several entries have the same Priority, in which case the latest entry in config
-load order will be used).
-
-//  SETTING CONFIG ENTRIES
-
-Some examples of specifying config values. Default config files is XComGame.ini, but you
-can change it to whatever you want in the class definition above.
 
 [$ModSafeName$.ConfigEngine]
 
@@ -39,7 +44,7 @@ can change it to whatever you want in the class definition above.
 
 +Configs = (N = "SomeIntArrayProperty", VA = ("1", "2", "3", "4"))
 
-; Same thing set written differently.
+; Same thing written differently.
 +Configs = (N = "SomeIntArrayProperty", VA[0] = "1", VA[1] = "2", VA[2} = "3", VA[3] = "4")
 
 ; Specify higher priority to make sure your config entry overrides entries with lower priority (default 50).
@@ -54,26 +59,35 @@ can change it to whatever you want in the class definition above.
 +Configs = (N = "SomeRequirementsProperty",\\
 	Requirements = (RequiredTechs[0] = "AutopsyArchon", RequiredEngineeringScore=20, bVisibleIfPersonnelGatesNotMet=true))
 	
-	
-//  GETTING CONFIG ENTRIES
+*/
+//=======================================================================================
+//                              GETTING CONFIG ENTRIES
+//---------------------------------------------------------------------------------------
+// 
+// You can call Config Engine functions directly, for example:
+// 
+// IntValue = int(class'ConfigEngine'.static.GetConfig("SomeIntProperty").V);
+// 
+// But that can get cumbersome, so helper functions and global macros are used 
+// to keep code compact.
+/*
 
-You can call Config Engine functions directly, for example:
+IntValue = `GetConfigInt("SomeIntProperty");
 
-IntValue = int(class'ConfigEngine'.static.GetConfig('SomeConfigName').V);
-
-But that can get cumbersome, so helper functions and global macros are used to shorten 
-the code.
-
-IntValue = `GetConfig('SomeIntProperty');
-
-IntArray = `GetConfigArrayInt('SomeIntArrayProperty');
+IntArray = `GetConfigArrayInt("SomeIntArrayProperty");
 
 */
+// While the GetConfig functions and macros accept names, 
+// it's recommended to use strings to avoid polluting the name table.
+// 
+//=======================================================================================
+//                              CONFIG ENGINE IMPLEMENTATION
+//---------------------------------------------------------------------------------------
 
 struct ConfigStruct
 {
 	// Config property name
-	var name				N; 
+	var string				N; 
 
 	// Properties
 	var string				V;	// Value of the property
@@ -92,7 +106,7 @@ struct ConfigStruct
 };
 var private config array<ConfigStruct> Configs;
 
-static final function ConfigStruct GetConfig(const name ConfigName)
+static final function ConfigStruct GetConfig(const coerce string ConfigName, optional bool bCanBeNull)
 {
 	local ConfigStruct ReturnConfig;
 	local ConfigStruct CycleConfig;
@@ -110,47 +124,46 @@ static final function ConfigStruct GetConfig(const name ConfigName)
 		}
 	}
 
-	if (ReturnConfig == EmptyConfig)
+	if (ReturnConfig == EmptyConfig && !bCanBeNull)
 	{
-		`AMLOG("WARNING :: Failed to find Config with N name:" @ ConfigName);
-		`AMLOG(GetScriptTrace());
+		`redscreen("WARNING :: Failed to find Config with N name:" @ ConfigName);
+		`redscreen(GetScriptTrace());
 	}
 
 	return ReturnConfig;
 }
 
-static final function string GetConfigValue(const name ConfigName)
+static final function string GetConfigValue(const coerce string ConfigName)
 {
 	return GetConfig(ConfigName).V;
 }
 
-
-static final function bool GetConfigBool(const name ConfigName)
+static final function bool GetConfigBool(const coerce string ConfigName)
 {
 	return bool(GetConfigValue(ConfigName));
 }
 
-static final function int GetConfigInt(const name ConfigName)
+static final function int GetConfigInt(const coerce string ConfigName)
 {
 	return int(GetConfigValue(ConfigName));
 }
 
-static final function float GetConfigFloat(const name ConfigName)
+static final function float GetConfigFloat(const coerce string ConfigName)
 {
 	return float(GetConfigValue(ConfigName));
 }
 
-static final function name GetConfigName(const name ConfigName)
+static final function name GetConfigName(const coerce string ConfigName)
 {
 	return name(GetConfigValue(ConfigName));
 }
 
-static final function string GetConfigString(const name ConfigName)
+static final function string GetConfigString(const coerce string ConfigName)
 {
 	return GetConfigValue(ConfigName);
 }
 
-static final function array<int> GetConfigArrayInt(const name ConfigName)
+static final function array<int> GetConfigArrayInt(const coerce string ConfigName)
 {
 	local array<string>	StringArray;
 	local array<int>	ReturnArray;
@@ -165,7 +178,7 @@ static final function array<int> GetConfigArrayInt(const name ConfigName)
 	return ReturnArray;
 }
 
-static final function array<float> GetConfigArrayFloat(const name ConfigName)
+static final function array<float> GetConfigArrayFloat(const coerce string ConfigName)
 {
 	local array<string>	StringArray;
 	local array<float>	ReturnArray;
@@ -178,4 +191,24 @@ static final function array<float> GetConfigArrayFloat(const name ConfigName)
 	}
 
 	return ReturnArray;
+}
+
+static final function array<name> GetConfigArrayName(const coerce string ConfigName, optional bool bCanBeNull)
+{
+	local array<string>	StringArray;
+	local array<name>	ReturnArray;
+	local int			Index;
+
+	StringArray = GetConfig(ConfigName, bCanBeNull).VA;
+	for (Index = 0; Index < StringArray.Length; Index++)
+	{
+		ReturnArray.AddItem(name(StringArray[Index]));
+	}
+
+	return ReturnArray;
+}
+
+static final function WeaponDamageValue GetConfigDamage(const coerce string ConfigName)
+{
+    return GetConfig(ConfigName).Damage;
 }
